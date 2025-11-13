@@ -1,0 +1,24 @@
+[
+  {
+    "ten": "Natri bicarbonat",
+    "biet_duoc": "4.2 w/v Sodium Bicarbonate 10,5g/250ml",
+    "dang_bao_che": "Dung dịch tiêm truyền",
+    "duong_tiem": "Truyền tĩnh mạch",
+    "toc_do": "Truyền tối đa 1,5 mmol/kg/giờ",
+    "luu_y": "Cần cho dùng dung dịch ngay khi kết nối bình chức với bộ dây truyền dịch.",
+    "tuong_ky": "Dung dịch chứa canxi, magie, phosphat",
+    "tai_lieu": "https://en.wikipedia.org/wiki/Sodium_bicarbonate",
+    "hinh_anh": "images/natri-bicarbonat.jpg"
+  },
+  {
+    "ten": "Adrenaline",
+    "biet_duoc": "Adrenaline Injection 1mg/ml",
+    "dang_bao_che": "Dung dịch tiêm",
+    "duong_tiem": "Tiêm bắp, tiêm tĩnh mạch",
+    "toc_do": "Theo hướng dẫn của bác sĩ",
+    "luu_y": "Thuốc nguy cơ cao, chỉ dùng tại cơ sở y tế có bác sĩ giám sát.",
+    "tuong_ky": "Không pha chung với dung dịch kiềm",
+    "tai_lieu": "https://en.wikipedia.org/wiki/Adrenaline",
+    "hinh_anh": "images/adrenaline.jpg"
+  }
+]
