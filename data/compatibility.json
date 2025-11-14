@@ -1,0 +1,15 @@
+{
+  "drugs": [
+    "Levofloxacin",
+    "Vancomycin",
+    "Amoxicillin + sulbactam",
+    "Albumin"
+  ],
+
+  "matrix": [
+    ["S", "I", "I", "I"],
+    ["I", "S", "C", "C"],
+    ["I", "C", "S", "C"],
+    ["I", "C", "C", "S"]
+  ]
+}

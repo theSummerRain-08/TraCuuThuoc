@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tra cứu tương hợp – tương kỵ</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f6fa;
+        margin: 0;
+        text-align: center;
+        padding-top: 70px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 60px;
+      }
+
+      .page-title {
+        color: #003366;
+        margin-top: 80px;
+      }
+
+      input {
+        width: 40%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      .suggestions {
+        width: 40%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-top: none;
+        background: white;
+        border-radius: 0 0 6px 6px;
+        max-height: 200px;
+        overflow-y: auto;
+        text-align: left;
+        position: relative;
+        z-index: 999;
+      }
+
+      .suggestions div {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .suggestions div:hover {
+        background: #e6f0ff;
+      }
+
+      .selected-box {
+        margin: 20px auto;
+        max-width: 600px;
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .drug-item {
+        padding: 8px;
+        background: #eef4ff;
+        border-radius: 6px;
+        margin: 6px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .result {
+        margin: 40px auto;
+        max-width: 900px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
+
+      .section-title {
+        background: #3b6b27;
+        color: white;
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background: #cfe7ff;
+        color: #001c55;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <h1 class="page-title">TRA CỨU TƯƠNG HỢP – TƯƠNG KỴ THUỐC TRUYỀN</h1>
+
+    <input
+      type="text"
+      id="drug-input"
+      placeholder="Nhập tên thuốc..."
+      oninput="showSuggestions()"
+    />
+    <div id="suggestions" class="suggestions"></div>
+
+    <div class="selected-box">
+      <h3>Thuốc đã chọn</h3>
+      <div id="selected-list"></div>
+    </div>
+
+    <button
+      onclick="searchCompat()"
+      style="padding: 10px 20px; font-size: 16px"
+    >
+      Tìm kiếm thông tin
+    </button>
+
+    <div class="result" id="result">
+      <div class="section-title">KẾT QUẢ TƯƠNG HỢP – TƯƠNG KỴ</div>
+      <table id="result-table">
+        <tr>
+          <td style="text-align: center">Chưa có dữ liệu</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      let compatData = null;
+      let selectedDrugs = [];
+
+      fetch("data/compatibility.json")
+        .then((res) => res.json())
+        .then((json) => (compatData = json));
+
+      function showSuggestions() {
+        const input = document.getElementById("drug-input").value.toLowerCase();
+        const box = document.getElementById("suggestions");
+        box.innerHTML = "";
+        if (!compatData || !input) return;
+
+        const list = compatData.drugs.filter((d) =>
+          d.toLowerCase().includes(input)
+        );
+
+        list.forEach((item) => {
+          const div = document.createElement("div");
+          div.textContent = item;
+          div.onclick = () => addDrug(item);
+          box.appendChild(div);
+        });
+      }
+
+      function addDrug(name) {
+        if (!selectedDrugs.includes(name)) selectedDrugs.push(name);
+        renderSelected();
+        document.getElementById("suggestions").innerHTML = "";
+        document.getElementById("drug-input").value = "";
+      }
+
+      function renderSelected() {
+        const box = document.getElementById("selected-list");
+        box.innerHTML = selectedDrugs
+          .map(
+            (d) => `
+    <div class='drug-item'>
+      ${d}
+      <button onclick="removeDrug('${d}')">X</button>
+    </div>`
+          )
+          .join("");
+      }
+
+      function removeDrug(name) {
+        selectedDrugs = selectedDrugs.filter((x) => x !== name);
+        renderSelected();
+      }
+
+      function searchCompat() {
+        if (selectedDrugs.length < 2) {
+          alert("Cần ít nhất 2 thuốc!");
+          return;
+        }
+        renderMatrix();
+      }
+
+      function renderMatrix() {
+        const table = document.getElementById("result-table");
+        const drugs = compatData.drugs;
+        const matrix = compatData.matrix;
+        const indexes = selectedDrugs.map((d) => drugs.indexOf(d));
+
+        let html = `<tr><th>Thuốc</th>`;
+        selectedDrugs.forEach((d) => (html += `<th>${d}</th>`));
+        html += `</tr>`;
+
+        selectedDrugs.forEach((r, i) => {
+          html += `<tr><th>${r}</th>`;
+          selectedDrugs.forEach((c, j) => {
+            const val = matrix[indexes[i]][indexes[j]];
+            let color = "",
+              text = "";
+            if (val === "S") {
+              color = "#005eb8";
+              text = "-";
+            } else if (val === "C") {
+              color = "#8be28b";
+              text = "V";
+            } else if (val === "I") {
+              color = "#ff6b6b";
+              text = "X";
+            }
+            html += `<td style='background:${color};font-weight:bold;'>${text}</td>`;
+          });
+          html += `</tr>`;
+        });
+
+        table.innerHTML = html;
+      }
+
+      // HEADER
+      fetch("header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+          initHeader();
+        });
+
+      function initHeader() {
+        const menuBtn = document.querySelector(".menu-btn");
+        const closeBtn = document.querySelector(".close-btn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+
+        if (!menuBtn) return;
+
+        menuBtn.onclick = () => {
+          sideMenu.classList.add("active");
+          overlay.classList.add("active");
+        };
+
+        const closeMenu = () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        };
+
+        closeBtn.onclick = closeMenu;
+        overlay.onclick = closeMenu;
+      }
+    </script>
+  </body>
+</html>

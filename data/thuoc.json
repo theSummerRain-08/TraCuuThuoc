@@ -1,6 +1,7 @@
 [
   {
     "ten": "Natri bicarbonat",
+    "hoat_chat": "Natri bicarbonat",
     "biet_duoc": "4.2 w/v Sodium Bicarbonate 10,5g/250ml",
     "dang_bao_che": "Dung dịch tiêm truyền",
     "duong_tiem": "Truyền tĩnh mạch",
@@ -12,10 +13,27 @@
   },
   {
     "ten": "Adrenaline",
+    "hoat_chat": "Adrenaline",
     "biet_duoc": "Adrenaline Injection 1mg/ml",
     "dang_bao_che": "Dung dịch tiêm",
     "duong_tiem": "Tiêm bắp, tiêm tĩnh mạch",
     "toc_do": "Theo hướng dẫn của bác sĩ",
+    "luu_y": "Thuốc nguy cơ cao, chỉ dùng tại cơ sở y tế có bác sĩ giám sát.",
+    "tuong_ky": "Không pha chung với dung dịch kiềm",
+    "tai_lieu": "https://en.wikipedia.org/wiki/Adrenaline",
+    "hinh_anh": "images/adrenaline.jpg"
+  },
+  {
+    "ten": "BACQURE 500mg + 500mg",
+    "hoat_chat": "Imipenem + cilastatin",
+    "biet_duoc": "BACQURE 500mg + 500mg",
+    "dang_bao_che": "Bột pha tiêm",
+    "duong_tiem": "Truyền tĩnh mạch",
+    "dung_moi_hoan_nguyen": "NaCl 0,9% // Dextrose 5% hoặc 10% // Dextrose 5% & NaCl 0,9% // Dextrose 5% & NaCl 0,225% hoặc 0,45% // Dextrose 5% & KCl 0,15% // Mannitol 5% hoặc 10%",
+    "cach_hoan_nguyen": "(500+500) mg + 10ml dung môi",
+    "dung_moi_pha_loang": "NaCl 0,9% // Dextrose 5% hoặc 10% // Dextrose 5% & NaCl 0,9% // Dextrose 5% & NaCl 0,225% hoặc 0,45% // Dextrose 5% & KCl 0,15% // Mannitol 5% hoặc 10%",
+    "nong_do_khuyen_nghi":"5 mg/ml (tính theo imipenem)",
+    "toc_do": "Người trưởng thành: //- Liều 125 - 500mg: truyền tĩnh mạch trong 20 - 30 phút //- Liều 750 - 1000 mg: truyền tĩnh mạch trong 40 - 60 phút //Trẻ em: //- Liều ≤ 500 mg: truyền tĩnh mạch trong 15 - 30 phút //- Liều > 500 mg: truyền tĩnh mạch trong 40 - 60 phút",
     "luu_y": "Thuốc nguy cơ cao, chỉ dùng tại cơ sở y tế có bác sĩ giám sát.",
     "tuong_ky": "Không pha chung với dung dịch kiềm",
     "tai_lieu": "https://en.wikipedia.org/wiki/Adrenaline",

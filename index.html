@@ -12,34 +12,12 @@
         font-family: Arial, sans-serif;
       }
 
-      /* Thanh trên cùng */
-      header {
-        background-color: #194a18;
-        color: white;
-        display: flex;
-        align-items: center;
-        padding: 10px 16px;
-        position: fixed;
+      /* Chỗ header sẽ được load vào */
+      #header-container {
         width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 10;
       }
 
-      .menu-btn {
-        font-size: 24px;
-        cursor: pointer;
-        margin-right: 16px;
-      }
-
-      header h1 {
-        font-size: 16px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      /* Ảnh nền mờ sẵn */
+      /* Ảnh nền mờ sẵn cho main */
       main {
         position: relative;
         display: flex;
@@ -52,7 +30,6 @@
         overflow: hidden;
       }
 
-      /* Lớp nền ảnh mờ */
       main::before {
         content: "";
         position: absolute;
@@ -85,70 +62,7 @@
         margin-top: 8px;
       }
 
-      /* Menu trượt ra */
-      nav {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 75%;
-        max-width: 300px;
-        height: 100%;
-        background-color: #194a18;
-        color: white;
-        transition: left 0.3s ease;
-        padding: 20px;
-        z-index: 15;
-      }
-
-      nav.active {
-        left: 0;
-      }
-
-      nav ul {
-        list-style: none;
-        margin-top: 20px;
-      }
-
-      nav ul li {
-        margin: 20px 0;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      nav .close-btn {
-        font-size: 24px;
-        cursor: pointer;
-        display: block;
-        text-align: right;
-      }
-
-      /* Lớp overlay mờ khi mở menu */
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(5px);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
-        z-index: 14;
-      }
-
-      .overlay.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
       @media (min-width: 768px) {
-        header h1 {
-          font-size: 20px;
-        }
-        nav {
-          width: 250px;
-        }
         main img {
           width: 300px;
         }
@@ -156,25 +70,8 @@
     </style>
   </head>
   <body>
-    <header>
-      <span class="menu-btn">&#9776;</span>
-      <h1>THÔNG TIN DƯỢC - BỆNH VIỆN TRUNG ƯƠNG QUÂN ĐỘI</h1>
-    </header>
-
-    <nav id="sideMenu">
-      <span class="close-btn">&times;</span>
-      <ul>
-        <li>TRANG CHỦ</li>
-        <li><a href="tracuu-tiem-truyen.html" style="color:white;text-decoration:none;">TRA CỨU THUỐC TIÊM TRUYỀN & THUỐC NGUY CƠ CAO</a></li>
-        <li>TRA CỨU TƯƠNG HỢP - TƯƠNG KỊ THUỐC</li>
-        <li>TRA CỨU TƯƠNG TÁC THUỐC</li>
-        <li>TRA CỨU THÔNG TIN THUỐC</li>
-        <li>THÔNG TIN CHO BỆNH NHÂN</li>
-      </ul>
-    </nav>
-
-    <!-- Lớp mờ nền khi mở menu -->
-    <div class="overlay" id="overlay"></div>
+    <!-- nơi header sẽ được chèn -->
+    <div id="header-container"></div>
 
     <main id="mainContent">
       <img src="logo.jpg" alt="Logo Bệnh viện Xanh Pôn" />
@@ -183,23 +80,46 @@
     </main>
 
     <script>
-      const menuBtn = document.querySelector(".menu-btn");
-      const closeBtn = document.querySelector(".close-btn");
-      const sideMenu = document.getElementById("sideMenu");
-      const overlay = document.getElementById("overlay");
+      // Load header.html và chèn vào #header-container
+      fetch("header.html")
+        .then(res => {
+          if (!res.ok) throw new Error("Không thể load header.html");
+          return res.text();
+        })
+        .then(html => {
+          document.getElementById("header-container").innerHTML = html;
+          // Sau khi chèn DOM header, khởi tạo hành vi cho menu
+          initHeader();
+        })
+        .catch(err => {
+          console.error("Lỗi load header:", err);
+        });
 
-      menuBtn.addEventListener("click", () => {
-        sideMenu.classList.add("active");
-        overlay.classList.add("active");
-      });
+      // Hàm khởi tạo hành vi cho header (mở/đóng menu)
+      function initHeader() {
+        const menuBtn = document.querySelector(".menu-btn");
+        const closeBtn = document.querySelector(".close-btn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
 
-      const closeMenu = () => {
-        sideMenu.classList.remove("active");
-        overlay.classList.remove("active");
-      };
+        if (!menuBtn || !closeBtn || !sideMenu || !overlay) {
+          console.warn("Một phần của header không tìm thấy. initHeader dừng lại.");
+          return;
+        }
 
-      closeBtn.addEventListener("click", closeMenu);
-      overlay.addEventListener("click", closeMenu);
+        menuBtn.addEventListener("click", () => {
+          sideMenu.classList.add("active");
+          overlay.classList.add("active");
+        });
+
+        const closeMenu = () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        };
+
+        closeBtn.addEventListener("click", closeMenu);
+        overlay.addEventListener("click", closeMenu);
+      }
     </script>
   </body>
 </html>

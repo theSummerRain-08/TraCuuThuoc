@@ -1,182 +1,352 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tra cứu thuốc tiêm truyền</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f6fa;
-      margin: 0;
-      text-align: center;
-      padding: 60px 20px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tra cứu thuốc tiêm truyền</title>
 
-    h1 {
-      color: #003366;
-      margin-bottom: 20px;
-    }
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f6fa;
+        margin: 0;
+        text-align: center;
+        padding-top: 70px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 60px;
+      }
 
-    input {
-      width: 60%;
-      padding: 10px;
-      border: 2px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
+      .page-title {
+        color: #003366;
+        margin-top: 80px;
+      }
 
-    .suggestions {
-      width: 60%;
-      margin: 0 auto;
-      border: 1px solid #ccc;
-      border-top: none;
-      background: white;
-      border-radius: 0 0 6px 6px;
-      max-height: 200px;
-      overflow-y: auto;
-      text-align: left;
-    }
+      #search {
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
 
-    .suggestions div {
-      padding: 10px;
-      cursor: pointer;
-    }
+      input {
+        width: 40%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
 
-    .suggestions div:hover {
-      background: #e6f0ff;
-    }
+      .suggestions {
+        width: 40%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-top: none;
+        background: white;
+        border-radius: 0 0 6px 6px;
+        max-height: 200px;
+        overflow-y: auto;
+        text-align: left;
+        position: relative;
+        z-index: 999;
+      }
 
-    .result {
-      margin: 40px auto;
-      max-width: 900px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-    }
+      .suggestions div {
+        padding: 10px;
+        cursor: pointer;
+      }
 
-    .section-title {
-      background: #b00a24;
-      color: white;
-      padding: 12px;
-      font-weight: bold;
-      text-align: left;
-      font-size: 18px;
-    }
+      .suggestions div:hover {
+        background: #e6f0ff;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+      .result {
+        margin: 40px auto;
+        max-width: 900px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
 
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
+      .section-title {
+        background: #3b6b27;
+        color: white;
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+      }
 
-    th {
-      background: #cfe7ff;
-      color: #001c55;
-      width: 35%;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-    .row-blue {
-      background: #cfe7ff;
-      font-weight: bold;
-      text-align: left;
-    }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
 
-    .row-section {
-      background: #f8f8f8;
-      font-weight: bold;
-    }
+      th {
+        background: #cfe7ff;
+        color: #001c55;
+        width: 35%;
+      }
 
-    img {
-      max-width: 150px;
-      margin: 10px 0;
-    }
+      .row-blue {
+        background: #cfe7ff;
+        font-weight: bold;
+        text-align: left;
+      }
 
-    a {
-      color: #0066cc;
-    }
-  </style>
-</head>
-<body>
-  <h1>TRA CỨU THUỐC TIÊM TRUYỀN VÀ THUỐC NGUY CƠ CAO</h1>
+      img {
+        max-width: 150px;
+        margin: 10px 0;
+      }
 
-  <input type="text" id="search" placeholder="Nhập tên hoạt chất hoặc biệt dược..." />
-  <div id="suggestions" class="suggestions"></div>
+      a {
+        color: #0066cc;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER SẼ LOAD TỪ header.html -->
+    <div id="header-container"></div>
 
-  <div class="result" id="result">
-    <div class="section-title">THÔNG TIN KẾT QUẢ</div>
-    <table id="info-table">
-      <tr><td colspan="2" style="text-align:center;">Không có thông tin</td></tr>
-    </table>
-  </div>
+    <h1 class="page-title">TRA CỨU THUỐC TIÊM TRUYỀN VÀ THUỐC NGUY CƠ CAO</h1>
 
-  <script>
-    let data = [];
-    const input = document.getElementById("search");
-    const suggestions = document.getElementById("suggestions");
-    const infoTable = document.getElementById("info-table");
+    <input
+      type="text"
+      id="search"
+      placeholder="Nhập tên hoạt chất hoặc biệt dược..."
+    />
+    <div id="suggestions" class="suggestions"></div>
 
-    // Đọc dữ liệu thuốc
-    fetch("data/thuoc.json")
-      .then(res => res.json())
-      .then(json => data = json);
+    <div class="result" id="result">
+      <div class="section-title">THÔNG TIN KẾT QUẢ</div>
+      <table id="info-table">
+        <tr>
+          <td colspan="2" style="text-align: center">Không có thông tin</td>
+        </tr>
+      </table>
+    </div>
 
-    // Gợi ý khi nhập
-    input.addEventListener("input", () => {
-      const value = input.value.trim().toLowerCase();
-      suggestions.innerHTML = "";
+    <script>
+      let data = [];
+      const input = document.getElementById("search");
+      const suggestions = document.getElementById("suggestions");
+      const infoTable = document.getElementById("info-table");
 
-      if (value.length > 0) {
-        const filtered = data
-          .filter(item => item.ten.toLowerCase().startsWith(value))
-          .slice(0, 10);
-
-        filtered.forEach(item => {
-          const div = document.createElement("div");
-          div.textContent = item.ten;
-          div.onclick = () => showDrugInfo(item);
-          suggestions.appendChild(div);
+      // TẢI DỮ LIỆU THUỐC
+      fetch("data/thuoc.json")
+        .then((res) => res.json())
+        .then((json) => {
+          data = json;
         });
+
+      // GỢI Ý THEO CHỮ CÁI ĐẦU
+      input.addEventListener("input", () => {
+        const value = input.value.trim().toLowerCase();
+        suggestions.innerHTML = "";
+
+        if (value.length > 0) {
+          const filtered = data
+            .filter((item) => item.ten.toLowerCase().startsWith(value))
+            .slice(0, 10);
+
+          filtered.forEach((item) => {
+            const div = document.createElement("div");
+            div.textContent = item.ten;
+            div.onclick = () => showDrugInfo(item);
+            suggestions.appendChild(div);
+          });
+        }
+      });
+
+      function formatText(text) {
+        if (!text) return "";
+        return text.replace(/\/\//g, "<br>"); // xuống dòng tại //
       }
-    });
 
-    // Hiển thị thông tin chi tiết
-    function showDrugInfo(item) {
-      input.value = item.ten;
-      suggestions.innerHTML = "";
+      // HIỂN THỊ THÔNG TIN THUỐC
+      function formatText(text) {
+        if (!text) return "";
+        return text.replace(/\/\//g, "<br>"); // xuống dòng tại //
+      }
 
-      infoTable.innerHTML = `
-        <tr class="row-blue"><td colspan="2"><strong>ĐẶC ĐIỂM CHUNG CỦA THUỐC</strong></td></tr>
-        <tr><th>Hoạt chất</th><td>${item.ten}</td></tr>
-        <tr><th>Biệt dược</th><td>${item.biet_duoc}</td></tr>
-        <tr><th>Dạng bào chế</th><td>${item.dang_bao_che}</td></tr>
-        <tr><th>Đường tiêm</th><td>${item.duong_tiem}</td></tr>
+      function showDrugInfo(item) {
+        input.value = item.ten;
+        suggestions.innerHTML = "";
 
-        <tr class="row-blue"><td colspan="2"><strong>LƯU Ý VỀ TIÊM, TRUYỀN TĨNH MẠCH</strong></td></tr>
-        <tr><th>Thời gian/tốc độ khuyến cáo</th><td>${item.toc_do}</td></tr>
-        <tr><th>Lưu ý khi tiêm truyền</th><td>${item.luu_y}</td></tr>
-
-        <tr class="row-blue"><td colspan="2"><strong>TƯƠNG HỢP - TƯƠNG KỊ</strong></td></tr>
-        <tr><th>Tương kỵ</th><td>${item.tuong_ky}</td></tr>
-
-        <tr class="row-blue"><td colspan="2"><strong>TÀI LIỆU THAM KHẢO</strong></td></tr>
-        <tr><th>Tài liệu tham khảo</th><td><a href="${item.tai_lieu}" target="_blank">Xem chi tiết</a></td></tr>
-        <tr><th>Hình ảnh biệt dược tại bệnh viện</th><td><img src="${item.hinh_anh}" alt="Hình thuốc"></td></tr>
-      `;
+        infoTable.innerHTML = `
+    ${
+      item.ten || item.biet_duoc || item.dang_bao_che || item.duong_tiem
+        ? `
+      <tr class="row-blue"><td colspan="2"><strong>ĐẶC ĐIỂM CHUNG CỦA THUỐC</strong></td></tr>
+      ${
+        item.ten
+          ? `<tr><th>Hoạt chất</th><td>${formatText(item.ten)}</td></tr>`
+          : ""
+      }
+      ${
+        item.biet_duoc
+          ? `<tr><th>Biệt dược</th><td>${formatText(item.biet_duoc)}</td></tr>`
+          : ""
+      }
+      ${
+        item.dang_bao_che
+          ? `<tr><th>Dạng bào chế</th><td>${formatText(
+              item.dang_bao_che
+            )}</td></tr>`
+          : ""
+      }
+      ${
+        item.duong_tiem
+          ? `<tr><th>Đường tiêm</th><td>${formatText(
+              item.duong_tiem
+            )}</td></tr>`
+          : ""
+      }
+    `
+        : ""
     }
 
-    // Ẩn gợi ý khi click ra ngoài
-    document.addEventListener("click", (e) => {
-      if (!suggestions.contains(e.target) && e.target !== input) {
-        suggestions.innerHTML = "";
+    ${
+      item.toc_do || item.luu_y
+        ? `
+      <tr class="row-blue"><td colspan="2"><strong>LƯU Ý VỀ TIÊM, TRUYỀN TĨNH MẠCH</strong></td></tr>
+      ${
+        item.toc_do
+          ? `<tr><th>Tốc độ/Thời gian</th><td>${formatText(
+              item.toc_do
+            )}</td></tr>`
+          : ""
       }
-    });
-  </script>
-</body>
+      ${
+        item.luu_y
+          ? `<tr><th>Lưu ý</th><td>${formatText(item.luu_y)}</td></tr>`
+          : ""
+      }
+    `
+        : ""
+    }
+
+    ${
+      item.dung_moi_hoan_nguyen || item.cach_hoan_nguyen
+        ? `
+      <tr class="row-blue"><td colspan="2"><strong>CÁCH HOÀN NGUYÊN</strong></td></tr>
+      ${
+        item.dung_moi_hoan_nguyen
+          ? `<tr><th>Dung môi hoàn nguyên</th><td>${formatText(
+              item.dung_moi_hoan_nguyen
+            )}</td></tr>`
+          : ""
+      }
+      ${
+        item.cach_hoan_nguyen
+          ? `<tr><th>Cách hoàn nguyên</th><td>${formatText(
+              item.cach_hoan_nguyen
+            )}</td></tr>`
+          : ""
+      }
+    `
+        : ""
+    }
+
+    ${
+      item.dung_moi_pha_loang || item.nong_do_kien_nghi
+        ? `
+      <tr class="row-blue"><td colspan="2"><strong>CÁCH PHA LOÃNG</strong></td></tr>
+      ${
+        item.dung_moi_pha_loang
+          ? `<tr><th>Dung môi pha loãng</th><td>${formatText(
+              item.dung_moi_pha_loang
+            )}</td></tr>`
+          : ""
+      }
+      ${
+        item.nong_do_khuyen_nghi
+          ? `<tr><th>Nồng độ khuyến nghị</th><td>${formatText(
+              item.nong_do_khuyen_nghi
+            )}</td></tr>`
+          : ""
+      }
+    `
+        : ""
+    }
+
+    ${
+      item.tuong_ky
+        ? `
+      <tr class="row-blue"><td colspan="2"><strong>TƯƠNG HỢP - TƯƠNG KỊ</strong></td></tr>
+      <tr><th>Tương kỵ</th><td>${formatText(item.tuong_ky)}</td></tr>
+    `
+        : ""
+    }
+
+    ${
+      item.tai_lieu || item.hinh_anh
+        ? `
+      <tr class="row-blue"><td colspan="2"><strong>TÀI LIỆU THAM KHẢO</strong></td></tr>
+      ${
+        item.tai_lieu
+          ? `<tr><th>Tham khảo</th><td><a href="${formatText(
+              item.tai_lieu
+            )}" target="_blank">Xem chi tiết</a></td></tr>`
+          : ""
+      }
+      ${
+        item.hinh_anh
+          ? `<tr><th>Hình ảnh</th><td><img src="${formatText(
+              item.hinh_anh
+            )}" alt="Hình thuốc"></td></tr>`
+          : ""
+      }
+    `
+        : ""
+    }
+  `;
+      }
+
+      // ẨN GỢI Ý KHI CLICK RA NGOÀI
+      document.addEventListener("click", (e) => {
+        if (!suggestions.contains(e.target) && e.target !== input) {
+          suggestions.innerHTML = "";
+        }
+      });
+    </script>
+
+    <!-- LOAD HEADER -->
+    <script>
+      fetch("header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+          initHeader();
+        });
+
+      function initHeader() {
+        const menuBtn = document.querySelector(".menu-btn");
+        const closeBtn = document.querySelector(".close-btn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+
+        if (!menuBtn) return;
+
+        menuBtn.onclick = () => {
+          sideMenu.classList.add("active");
+          overlay.classList.add("active");
+        };
+
+        const closeMenu = () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        };
+
+        closeBtn.onclick = closeMenu;
+        overlay.onclick = closeMenu;
+      }
+    </script>
+  </body>
 </html>
