@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>THÔNG TIN DƯỢC - BỆNH VIỆN ĐA KHOA XANH PÔN</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
     <style>
       * {
         margin: 0;
@@ -12,125 +17,276 @@
         font-family: Arial, sans-serif;
       }
 
-      /* Chỗ header sẽ được load vào */
       #header-container {
         width: 100%;
       }
 
-      /* Ảnh nền mờ sẵn cho main */
+      /* MAIN CONTENT */
       main {
-        position: relative;
+        padding: 80px 20px 40px;
+        text-align: center;
+      }
+
+      main img.logo {
+        width: 260px;
+        max-width: 80%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .hero {
+        width: 100%;
+        height: 100vh; /* chiếm toàn màn hình */
+        background: url("your-background.jpg") center/cover no-repeat;
+
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
-        padding-top: 80px;
-        text-align: center;
-        overflow: hidden;
+
+        padding-top: 80px; /* tránh bị che bởi header */
+        color: white; /* nếu muốn chữ sáng */
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
       }
 
-      main::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("your-background.jpg") center/cover no-repeat;
-        filter: blur(2px) brightness(0.8);
-        z-index: 0;
+      .hero h2 {
+        color: #ffffff;
       }
 
-      main img,
-      main h2,
-      main h3 {
-        position: relative;
-        z-index: 1;
-      }
-
-      main img {
-        width: 250px;
-        max-width: 80%;
-        height: auto;
+      .hero h3 {
+        color: #f1f1f1;
       }
 
       main h2 {
         color: #001c55;
-        margin-top: 16px;
+        margin-top: 12px;
       }
 
       main h3 {
         color: #3b6b27;
-        margin-top: 8px;
+        margin-top: 6px;
+        margin-bottom: 40px;
       }
 
-      .suggestions {
-        width: 40%;
+      /* GIỚI THIỆU (HÌNH 1) */
+      .intro-section {
+        max-width: 1100px;
+        margin: 30px auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .intro-section img {
+        width: 450px;
+        max-width: 100%;
+        border-radius: 10px;
+      }
+
+      .intro-text {
+        max-width: 550px;
+        text-align: left;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .intro-text b {
+        color: #3b6b27;
+      }
+
+      /* FOOTER 2 CỘT (HÌNH 2) */
+      footer {
+        margin-top: 60px;
+        padding: 30px 20px;
+        background: #f7f7f7;
+        border-top: 2px solid #ddd;
+      }
+
+      .footer-container {
+        max-width: 1100px;
         margin: 0 auto;
-        border: 1px solid #ccc;
-        border-top: none;
-        background: white;
-        border-radius: 0 0 6px 6px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
       }
 
-      @media (min-width: 768px) {
-        main img {
-          width: 300px;
-        }
+      .footer-box {
+        flex: 1;
+        min-width: 280px;
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .footer-box h4 {
+        color: #3b6b27;
+        margin-bottom: 8px;
+      }
+
+      .footer-icons {
+        margin-top: 10px;
+      }
+
+      .footer-icons a {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 32px;
+        color: #555;
+        text-decoration: none;
+      }
+
+      .copyright {
+        text-align: center;
+        margin-top: 25px;
+        color: #444;
+      }
+
+      /* ẢNH TỰ ĐỘNG*/
+      .auto-image-section {
+        max-width: 1100px;
+        margin: 40px auto;
+        text-align: center;
+      }
+
+      .auto-image-section img {
+        width: 100%;
+        max-width: 1100px;
+        border-radius: 12px;
+        object-fit: cover;
       }
     </style>
   </head>
+
   <body>
-    <!-- nơi header sẽ được chèn -->
+    <!-- HEADER -->
     <div id="header-container"></div>
 
+    <!-- MAIN CONTENT -->
     <main id="mainContent">
-      <img src="logo.jpg" alt="Logo Bệnh viện Xanh Pôn" />
-      <h2>KHOA DƯỢC</h2>
-      <h3>THÔNG TIN DƯỢC</h3>
+      <section class="hero">
+        <img class="logo" src="logo.jpg" alt="Logo Bệnh viện Xanh Pôn" />
+        <h2>KHOA DƯỢC</h2>
+        <h3>THÔNG TIN DƯỢC</h3>
+      </section>
+
+      <!-- GIỚI THIỆU  -->
+      <div class="intro-section">
+        <img src="intro.jpg" alt="Ảnh giới thiệu" />
+
+        <div class="intro-text">
+          <p>
+            <b
+              >Apps tra cứu thông tin dược của BỆNH VIỆN TRUNG ƯƠNG QUÂN ĐỘI
+              108</b
+            >
+            là công cụ trực quan, được các dược sĩ lâm sàng tâm huyết xây dựng
+            nhằm hỗ trợ cán bộ y tế trong việc tra cứu nhanh chóng, chính xác.
+            Thông tin thuốc được cập nhật liên tục, đồng bộ với danh mục thuốc
+            mới nhất của bệnh viện.
+          </p>
+          <p>
+            Ứng dụng giúp đảm bảo tính kịp thời, an toàn và phù hợp trong quá
+            trình điều trị người bệnh.
+          </p>
+          <p>
+            <b>Hãy bấm vào góc trái (3 thanh ngang) để chọn mục cần tra cứu.</b>
+          </p>
+        </div>
+      </div>
     </main>
+    <!-- ẢNH CHUYỂN TỰ ĐỘNG -->
+    <div class="auto-image-section">
+      <img id="autoImage" src="slide1.jpg" alt="Ảnh tự động" />
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-container">
+        <!-- LEFT: Địa chỉ + Google Maps -->
+        <div class="footer-box">
+          <h4>BỆNH VIỆN TRUNG ƯƠNG QUÂN ĐỘI 108</h4>
+          <p>
+            Đoán xem, Hà Nội 100000, Việt Nam
+            <br /><br />
+            Bệnh viện đa khoa
+          </p>
+          <a
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1"
+            target="_blank"
+            style="color: #0066cc; font-weight: bold; text-decoration: none"
+          >
+            ➜ Xem trên Google Maps
+          </a>
+        </div>
+
+        <!-- RIGHT: Link website + Facebook -->
+        <div class="footer-box" style="text-align: center">
+          <h4>Liên kết</h4>
+
+          <div class="footer-icons">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" target="_blank">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" target="_blank">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+          </div>
+
+          <div class="copyright">
+            Made by Dr. MaiPhuong Trịnh, Dev. Con Mua mua ha
+            <br />
+            © 2025. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script>
-      // Load header.html và chèn vào #header-container
+      // Load header.html
       fetch("header.html")
-        .then((res) => {
-          if (!res.ok) throw new Error("Không thể load header.html");
-          return res.text();
-        })
+        .then((res) => res.text())
         .then((html) => {
           document.getElementById("header-container").innerHTML = html;
-          // Sau khi chèn DOM header, khởi tạo hành vi cho menu
           initHeader();
-        })
-        .catch((err) => {
-          console.error("Lỗi load header:", err);
         });
 
-      // Hàm khởi tạo hành vi cho header (mở/đóng menu)
       function initHeader() {
         const menuBtn = document.querySelector(".menu-btn");
         const closeBtn = document.querySelector(".close-btn");
         const sideMenu = document.getElementById("sideMenu");
         const overlay = document.getElementById("overlay");
 
-        if (!menuBtn || !closeBtn || !sideMenu || !overlay) {
-          console.warn(
-            "Một phần của header không tìm thấy. initHeader dừng lại."
-          );
-          return;
-        }
+        if (!menuBtn) return;
 
-        menuBtn.addEventListener("click", () => {
+        menuBtn.onclick = () => {
           sideMenu.classList.add("active");
           overlay.classList.add("active");
-        });
+        };
 
         const closeMenu = () => {
           sideMenu.classList.remove("active");
           overlay.classList.remove("active");
         };
 
-        closeBtn.addEventListener("click", closeMenu);
-        overlay.addEventListener("click", closeMenu);
+        closeBtn.onclick = closeMenu;
+        overlay.onclick = closeMenu;
       }
+    </script>
+
+    <script>
+      const images = ["slide1.jpg", "slide2.jpg", "slide3.jpg", "slide4.jpg"];
+
+      let index = 0;
+      const imgElement = document.getElementById("autoImage");
+
+      setInterval(() => {
+        index = (index + 1) % images.length;
+        imgElement.src = images[index];
+      }, 5000); // 5 giây đổi ảnh
     </script>
   </body>
 </html>

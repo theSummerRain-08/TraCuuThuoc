@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tra cứu LASA</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f6fa;
+        margin: 0;
+        text-align: center;
+        padding-top: 70px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 60px;
+      }
+
+      .page-title {
+        color: #003366;
+        margin-top: 80px;
+      }
+
+      /* TAB BUTTONS */
+      .tabs {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .tab-btn {
+        padding: 10px 20px;
+        border-radius: 6px;
+        border: 2px solid #3b6b27;
+        background: white;
+        color: #3b6b27;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.2s;
+      }
+
+      .tab-btn.active {
+        background: #3b6b27;
+        color: white;
+      }
+
+      /* SEARCH */
+      #search {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      input {
+        width: 40%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      .suggestions {
+        width: 40%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-top: none;
+        background: white;
+        border-radius: 0 0 6px 6px;
+        max-height: 200px;
+        overflow-y: auto;
+        text-align: left;
+        position: relative;
+        z-index: 999;
+      }
+
+      .suggestions div {
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .suggestions div:hover {
+        background: #e6f0ff;
+      }
+
+      /* RESULT CARD */
+      .result {
+        margin: 40px auto;
+        max-width: 900px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
+
+      .section-title {
+        background: #3b6b27;
+        color: white;
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background: #cfe7ff;
+        color: #001c55;
+        width: 35%;
+      }
+
+      .row-blue {
+        background: #cfe7ff;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div id="header-container"></div>
+
+    <h1 class="page-title">TRA CỨU LASA</h1>
+
+    <!-- TAB BUTTONS -->
+    <div class="tabs">
+      <button class="tab-btn active" id="btn-khainiem">Khái niệm</button>
+      <button class="tab-btn" id="btn-danhsach">Danh mục thuốc LASA</button>
+      <button class="tab-btn" id="btn-tracuu">Tra cứu</button>
+    </div>
+
+    <!-- SEARCH -->
+    <input
+      type="text"
+      id="search"
+      placeholder="Nhập tên hoạt chất hoặc biệt dược..."
+      style="display: none"
+    />
+    <div id="suggestions" class="suggestions"></div>
+
+    <!-- CONTENT AREA -->
+    <div id="content-area" style="margin-top: 20px">
+      <!-- Mặc định: Khái niệm -->
+      <div
+        style="
+          text-align: left;
+          max-width: 900px;
+          margin: 0 auto;
+          line-height: 1.6;
+        "
+      >
+        <p>
+          <b>LASA</b> là viết tắt của <b>"Look Alike – Sound Alike"</b> (Nhìn
+          giống nhau – Đọc giống nhau), là một danh mục các loại thuốc có bao
+          bì, tên gọi hoặc cách phát âm dễ gây nhầm lẫn cho nhân viên y tế và
+          bệnh nhân. Việc nhầm lẫn này có thể dẫn đến sai sót trong quá trình kê
+          đơn, cấp phát, giao nhận và sử dụng thuốc, gây nguy hiểm cho bệnh
+          nhân.
+        </p>
+
+        <h3>Đặc điểm của thuốc LASA</h3>
+
+        <p>
+          <b>• Nhìn giống nhau (Look Alike - LA):</b><br />
+          Thuốc có bao bì (hộp, lọ, vỉ, viên nang, viên nén) tương tự nhau về
+          hình dạng, màu sắc, kích thước và thiết kế.
+        </p>
+
+        <p>
+          <b>• Đọc giống nhau (Sound Alike - SA):</b><br />
+          Thuốc có tên gọi phát âm hoặc cách viết tương tự nhau.
+        </p>
+
+        <h3>Mục đích của danh mục LASA</h3>
+        <ul>
+          <li>
+            Giảm thiểu nguy cơ nhầm lẫn và sai sót y khoa liên quan đến thuốc.
+          </li>
+          <li>
+            Giúp nhân viên y tế cẩn trọng hơn khi thao tác với thuốc LASA.
+          </li>
+        </ul>
+
+        <h3>Các biện pháp phòng tránh sai sót LASA</h3>
+        <ul>
+          <li>Cung cấp thông tin cảnh báo cho nhân viên y tế.</li>
+          <li>
+            Sắp xếp các thuốc LASA ở vị trí khác nhau trong kho và tủ thuốc.
+          </li>
+          <li>
+            Sử dụng dấu hiệu cảnh báo như viết HOA phân biệt (DAUNOrubicin –
+            DOXOrubicin).
+          </li>
+          <li>Sử dụng hệ thống kê đơn điện tử để hạn chế lỗi đọc.</li>
+          <li>Báo cáo các trường hợp sai sót để rút kinh nghiệm.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RESULT BOX -->
+    <div class="result" id="result" style="display: none">
+      <div class="section-title">THÔNG TIN KẾT QUẢ</div>
+      <table id="info-table">
+        <tr>
+          <td colspan="2" style="text-align: center">Không có thông tin</td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      /* LOAD HEADER */
+      fetch("header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+          initHeader();
+        });
+
+      function initHeader() {
+        const menuBtn = document.querySelector(".menu-btn");
+        const closeBtn = document.querySelector(".close-btn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+
+        if (!menuBtn) return;
+
+        menuBtn.onclick = () => {
+          sideMenu.classList.add("active");
+          overlay.classList.add("active");
+        };
+        const closeMenu = () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        };
+        closeBtn.onclick = closeMenu;
+        overlay.onclick = closeMenu;
+      }
+
+      /* TAB SWITCHING */
+      const btnKhaiNiem = document.getElementById("btn-khainiem");
+      const btnDanhSach = document.getElementById("btn-danhsach");
+      const btnTraCuu = document.getElementById("btn-tracuu");
+
+      const searchInput = document.getElementById("search");
+      const contentArea = document.getElementById("content-area");
+      const resultBox = document.getElementById("result");
+
+      function resetTabs() {
+        document
+          .querySelectorAll(".tab-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+      }
+
+      btnKhaiNiem.onclick = () => {
+        resetTabs();
+        btnKhaiNiem.classList.add("active");
+
+        searchInput.style.display = "none";
+        resultBox.style.display = "none";
+
+        contentArea.innerHTML = `
+      <div style="text-align:left; max-width:900px; margin:0 auto; line-height:1.6;">
+        <p><b>LASA</b> là viết tắt của <b>"Look Alike – Sound Alike"</b> (Nhìn giống nhau – Đọc giống nhau), 
+        là một danh mục các loại thuốc có bao bì, tên gọi hoặc cách phát âm dễ gây nhầm lẫn cho nhân viên y tế 
+        và bệnh nhân. Việc nhầm lẫn này có thể dẫn đến sai sót trong quá trình kê đơn, cấp phát, giao nhận và sử dụng thuốc, 
+        gây nguy hiểm cho bệnh nhân.</p>
+
+        <h3>Đặc điểm của thuốc LASA</h3>
+
+        <p><b>• Nhìn giống nhau (Look Alike - LA):</b><br>
+        Thuốc có bao bì (hộp, lọ, vỉ, viên nang, viên nén) tương tự nhau về hình dạng, màu sắc, kích thước và thiết kế.</p>
+
+        <p><b>• Đọc giống nhau (Sound Alike - SA):</b><br>
+        Thuốc có tên gọi phát âm hoặc cách viết tương tự nhau.</p>
+
+        <h3>Mục đích của danh mục LASA</h3>
+        <ul>
+          <li>Giảm thiểu nguy cơ nhầm lẫn và sai sót y khoa liên quan đến thuốc.</li>
+          <li>Giúp nhân viên y tế cẩn trọng hơn khi thao tác với thuốc LASA.</li>
+        </ul>
+
+        <h3>Các biện pháp phòng tránh sai sót LASA</h3>
+        <ul>
+          <li>Cung cấp thông tin cảnh báo cho nhân viên y tế.</li>
+          <li>Sắp xếp các thuốc LASA ở vị trí khác nhau trong kho và tủ thuốc.</li>
+          <li>Sử dụng dấu hiệu cảnh báo như viết HOA phân biệt (DAUNOrubicin – DOXOrubicin).</li>
+          <li>Sử dụng hệ thống kê đơn điện tử để hạn chế lỗi đọc.</li>
+          <li>Báo cáo các trường hợp sai sót để rút kinh nghiệm.</li>
+        </ul>
+      </div>
+      `;
+      };
+
+      btnDanhSach.onclick = () => {
+        resetTabs();
+        btnDanhSach.classList.add("active");
+
+        searchInput.style.display = "none";
+        resultBox.style.display = "none";
+
+        contentArea.innerHTML = `
+        <iframe 
+          src="https://docs.google.com/document/d/e/2PACX-1vS9vTCwd19_aGZw07YPFK_3xi9j6fLqAEzymDbhtW1l-ecDBSF529sUXpNgwkdnFc9pbFsvx4hiTuhh/pub?embedded=true">
+        </iframe>
+      `;
+      };
+
+      btnTraCuu.onclick = () => {
+        resetTabs();
+        btnTraCuu.classList.add("active");
+
+        searchInput.style.display = "block";
+        resultBox.style.display = "block";
+
+        contentArea.innerHTML = "";
+      };
+
+      /* LOAD DATA */
+      let data = [];
+      const suggestions = document.getElementById("suggestions");
+      const infoTable = document.getElementById("info-table");
+
+      // Tải file LASA
+      fetch("data/lasa.json")
+        .then((res) => res.json())
+        .then((json) => (data = json));
+
+      // Gợi ý theo từng thuốc trong tất cả nhóm
+      searchInput.addEventListener("input", () => {
+        const value = searchInput.value.trim().toLowerCase();
+        suggestions.innerHTML = "";
+        if (!value) return;
+
+        // Tạo danh sách tất cả thuốc (gồm group_id)
+        let allDrugs = [];
+        data.forEach((g) => {
+          g.thuoc.forEach((t) => {
+            allDrugs.push({
+              ten: t.ten,
+              group_id: g.group_id,
+            });
+          });
+        });
+
+        const filtered = allDrugs
+          .filter((item) => item.ten.toLowerCase().includes(value))
+          .slice(0, 10);
+
+        filtered.forEach((item) => {
+          const div = document.createElement("div");
+          div.textContent = item.ten;
+          div.onclick = () => showDrugInfo(item.ten);
+          suggestions.appendChild(div);
+        });
+      });
+
+      // Map màu phân loại
+      const colorMap = {
+        1: "#2e7d32", // xanh lá
+        2: "#ff9800", // cam
+        3: "#8e24aa", // tím
+        4: "#1976d2", // xanh dương
+      };
+
+      // Hàm hiển thị bảng LASA
+      function showDrugInfo(selectedName) {
+        searchInput.value = selectedName;
+        suggestions.innerHTML = "";
+
+        // Tìm group chứa thuốc được chọn
+        const group = data.find((g) =>
+          g.thuoc.some(
+            (t) => t.ten.toLowerCase() === selectedName.toLowerCase()
+          )
+        );
+
+        if (!group) {
+          infoTable.innerHTML = `<tr><td colspan="10" style="text-align:center;">Không tìm thấy thông tin</td></tr>`;
+          return;
+        }
+
+        const color = colorMap[group.phanloai];
+
+        // Tạo HTML bảng
+        let html = `
+    <tr class="row-blue">
+      <td colspan="${group.thuoc.length + 1}" 
+        style="color:${color}; font-weight:bold; text-align:center;">
+        ${group.phanloai_text}
+      </td>
+    </tr>
+
+    <tr>
+      <th></th>
+      ${group.thuoc.map((t) => `<th>${t.ten}</th>`).join("")}
+    </tr>
+
+    <tr>
+      <th>Tên, hoạt chất, hàm lượng</th>
+      ${group.thuoc
+        .map(
+          (t) => `
+          <td>
+            ${t.ten}<br>
+            (${t.hoatchat})<br>
+            <b style="color:red">${t.hamluong}</b>
+          </td>
+        `
+        )
+        .join("")}
+    </tr>
+
+    <tr>
+      <th>Nhóm thuốc</th>
+      ${group.thuoc.map((t) => `<td>${t.nhom}</td>`).join("")}
+    </tr>
+
+    <tr>
+      <th>Dạng bào chế</th>
+      ${group.thuoc
+        .map((t) => `<td style="color:red">${t.dangbaoche}</td>`)
+        .join("")}
+    </tr>
+  `;
+
+        infoTable.innerHTML = html;
+      }
+
+      // Ẩn gợi ý khi click ra ngoài
+      document.addEventListener("click", (e) => {
+        if (!suggestions.contains(e.target) && e.target !== searchInput)
+          suggestions.innerHTML = "";
+      });
+    </script>
+  </body>
+</html>

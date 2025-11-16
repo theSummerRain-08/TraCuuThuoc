@@ -1,0 +1,80 @@
+[
+  {
+    "group_id": "L001",
+    "phanloai": 1,
+    "phanloai_text": "I. Danh mục thuốc nhìn giống nhau, đọc giống nhau (LASA: Look alike sound alike)",
+    "thuoc": [
+      {
+        "ten": "Cordarone 150mg/3ml",
+        "hoatchat": "Amiodarone hydrochloride 150mg/3ml",
+        "hamluong": "150mg/3ml",
+        "nhom": "Thuốc chống loạn nhịp",
+        "dangbaoche": "Dung dịch tiêm",
+        "hinhanh": ""
+      },
+      {
+        "ten": "Cordarone 200mg",
+        "hoatchat": "Amiodarone hydrochloride 200mg",
+        "hamluong": "200mg",
+        "nhom": "Thuốc chống loạn nhịp",
+        "dangbaoche": "Viên nén",
+        "hinhanh": ""
+      }
+    ]
+  },
+  {
+    "group_id": "L002",
+    "phanloai": 4,
+    "phanloai_text": "IV. Danh mục thuốc nhìn giống nhau, đọc khác nhau (LA: Look alike)",
+    "thuoc": [
+      {
+        "ten": "Alegysal",
+        "hoatchat": "Pemirolast Kali 5mg/5ml",
+        "hamluong": "5mg/5ml",
+        "nhom": "Thuốc mắt",
+        "dangbaoche": " Dung dịch nhỏ mắt",
+        "hinhanh": ""
+      },
+      {
+        "ten": "Kary Uni",
+        "hoatchat": "Pirenoxin 0,25mg/5ml",
+        "hamluong": "0,25mg/5ml",
+        "nhom": "Thuốc mắt",
+        "dangbaoche": "Hỗn dịch nhỏ mắt",
+        "hinhanh": ""
+      },
+      {
+        "ten": "Diquas",
+        "hoatchat": "Natri diquafosol 150mg/5ml",
+        "hamluong": "150mg/3ml",
+        "nhom": "Thuốc mắt",
+        "dangbaoche": "Dung dịch nhỏ mắt",
+        "hinhanh": ""
+      },
+      {
+        "ten": "Cravit 1.5%",
+        "hoatchat": "Levofloxacin hydrat 75mg/5ml",
+        "hamluong": "75mg/5ml",
+        "nhom": "Thuốc mắt",
+        "dangbaoche": " Dung dịch nhỏ mắt",
+        "hinhanh": ""
+      },
+      {
+        "ten": "Sanlein 0.3",
+        "hoatchat": "Natri hyaluronat tinh khiết 15mg/5ml",
+        "hamluong": "15mg/5ml",
+        "nhom": "Thuốc mắt",
+        "dangbaoche": "Dung dịch nhỏ mắt",
+        "hinhanh": ""
+      },
+      {
+        "ten": "Flumetholon 0,1",
+        "hoatchat": "Fluorometholon 5mg/5ml",
+        "hamluong": "5mg/5ml",
+        "nhom": "Thuốc mắt",
+        "dangbaoche": "Dung dịch nhỏ mắt",
+        "hinhanh": ""
+      }
+    ]
+  }
+]
