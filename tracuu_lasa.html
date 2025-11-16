@@ -8,7 +8,8 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: #f2f6fa;
+        background: url("bg.jpg") no-repeat center center fixed;
+        background-size: cover;
         margin: 0;
         text-align: center;
         padding-top: 70px;
@@ -388,6 +389,36 @@
         4: "#1976d2", // xanh dương
       };
 
+      // Hàm đổi màu chữ
+      function formatColor(text) {
+        const colorMap = {
+          ĐỎ: "red",
+          "XANH DƯƠNG": "blue",
+          "XANH DA TRỜI": "skyblue",
+          "XANH LÁ": "green",
+          "XANH CÂY ĐẬM": "darkgreen",
+          CAM: "orange",
+          VÀNG: "gold",
+          HỒNG: "pink",
+          TÍM: "purple",
+          NÂU: "brown",
+          ĐEN: "black",
+          TRẮNG: "gray",
+        };
+
+        let result = text;
+
+        for (let key in colorMap) {
+          const regex = new RegExp(key, "gi");
+          result = result.replace(
+            regex,
+            `<b style="color:${colorMap[key]}; font-weight:bold;">${key}</b>`
+          );
+        }
+
+        return result;
+      }
+
       // Hàm hiển thị bảng LASA
       function showDrugInfo(selectedName) {
         searchInput.value = selectedName;
@@ -477,10 +508,9 @@
   ${group.thuoc
     .map(
       (t) =>
-        `<td style="color:red; text-align:left;">${t.khacnhau.replace(
-          /\/\/+/g,
-          "<br>"
-        )}</td>`
+        `<td style="color:red; text-align:left;">
+  ${formatColor(t.khacnhau).replace(/\/\/+/g, "<br>")}
+</td>`
     )
     .join("")}
 </tr>

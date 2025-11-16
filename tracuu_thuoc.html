@@ -1,206 +1,217 @@
-  <!DOCTYPE html>
-  <html lang="vi">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Tra cứu thuốc</title>
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tra cứu thuốc</title>
 
-      <style>
-        body {
-          font-family: Arial, sans-serif;
-          background: #f2f6fa;
-          margin: 0;
-          padding: 80px 20px 60px;
-          text-align: center;
-        }
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: url("bg.jpg") no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 80px 20px 60px;
+        text-align: center;
+      }
 
-        .page-title {
-          color: #003366;
-          margin-top: 60px;
-        }
+      .page-title {
+        color: #003366;
+        margin-top: 60px;
+      }
 
-        input {
-          width: 40%;
-          padding: 10px;
-          border: 2px solid #ccc;
-          border-radius: 6px;
-          font-size: 16px;
-        }
+      input {
+        width: 40%;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
 
-        .suggestions {
-          width: 40%;
-          margin: 0 auto;
-          border: 1px solid #ccc;
-          border-top: none;
-          background: white;
-          border-radius: 0 0 6px 6px;
-          max-height: 200px;
-          overflow-y: auto;
-          text-align: left;
-          position: relative;
-          z-index: 999;
-        }
+      .suggestions {
+        width: 40%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-top: none;
+        background: white;
+        border-radius: 0 0 6px 6px;
+        max-height: 200px;
+        overflow-y: auto;
+        text-align: left;
+        position: relative;
+        z-index: 999;
+      }
 
-        .suggestions div {
-          padding: 10px;
-          cursor: pointer;
-        }
+      .suggestions div {
+        padding: 10px;
+        cursor: pointer;
+      }
 
-        .suggestions div:hover {
-          background: #e6f0ff;
-        }
+      .suggestions div:hover {
+        background: #e6f0ff;
+      }
 
-        .result {
-          margin: 40px auto;
-          max-width: 900px;
-          background: white;
-          border-radius: 12px;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-          padding: 20px 30px;
-        }
+      .result {
+        margin: 40px auto;
+        max-width: 900px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        padding: 20px 30px;
+      }
 
-        .section-box {
-          background: #ffffff;
-          border-radius: 10px;
-          margin-bottom: 25px;
-          padding: 0;
-          border: 1px solid #ddd;
-          overflow: hidden;
-        }
+      .section-box {
+        background: #ffffff;
+        border-radius: 10px;
+        margin-bottom: 25px;
+        padding: 0;
+        border: 1px solid #ddd;
+        overflow: hidden;
+      }
 
-        .section-title {
-          background: #cfe7ff;
-          color: #001c55;
-          padding: 12px;
-          font-weight: bold;
-          font-size: 18px;
-          text-align: center;
-        }
+      .section-title {
+        background: #cfe7ff;
+        color: #001c55;
+        padding: 12px;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+      }
 
-        .section-content {
-          padding: 15px;
-          font-size: 16px;
-          text-align: left;
-          white-space: pre-wrap;
-        }
-      </style>
-    </head>
+      .section-content {
+        padding: 15px;
+        font-size: 16px;
+        text-align: left;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
 
-    <body>
-      <!-- HEADER -->
-      <div id="header-container"></div>
+  <body>
+    <!-- HEADER -->
+    <div id="header-container"></div>
 
-      <h1 class="page-title">TRA CỨU THÔNG TIN THUỐC</h1>
+    <h1 class="page-title">TRA CỨU THÔNG TIN THUỐC</h1>
 
-      <input type="text" id="search" placeholder="Nhập tên hoạt chất..." />
-      <div id="suggestions" class="suggestions"></div>
+    <input type="text" id="search" placeholder="Nhập tên hoạt chất..." />
+    <div id="suggestions" class="suggestions"></div>
 
-      <div class="result" id="result">
-        <div style="text-align:center; padding:20px; color:#666;">
-          Không có thông tin
-        </div>
+    <div class="result" id="result">
+      <div style="text-align: center; padding: 20px; color: #666">
+        Không có thông tin
       </div>
+    </div>
 
-      <script>
-        let data = [];
-        const input = document.getElementById("search");
-        const suggestions = document.getElementById("suggestions");
-        const result = document.getElementById("result");
+    <script>
+      let data = [];
+      const input = document.getElementById("search");
+      const suggestions = document.getElementById("suggestions");
+      const result = document.getElementById("result");
 
-        fetch("data/thuoc-thongtin.json")
-          .then((res) => res.json())
-          .then((json) => (data = json));
+      fetch("data/thuoc-thongtin.json")
+        .then((res) => res.json())
+        .then((json) => (data = json));
 
-        input.addEventListener("input", () => {
-          const value = input.value.trim().toLowerCase();
-          suggestions.innerHTML = "";
+      input.addEventListener("input", () => {
+        const value = input.value.trim().toLowerCase();
+        suggestions.innerHTML = "";
 
-          if (value.length > 0) {
-            const filtered = data
-              .filter((item) => item.ten.toLowerCase().startsWith(value))
-              .slice(0, 10);
+        if (value.length > 0) {
+          const filtered = data
+            .filter((item) => item.ten.toLowerCase().startsWith(value))
+            .slice(0, 10);
 
-            filtered.forEach((item) => {
-              const div = document.createElement("div");
-              div.textContent = item.ten;
-              div.onclick = () => showDrugInfo(item);
-              suggestions.appendChild(div);
-            });
-          }
-        });
-
-        function formatText(text) {
-          if (!text) return "";
-          return text.replace(/\/\//g, "<br>");
+          filtered.forEach((item) => {
+            const div = document.createElement("div");
+            div.textContent = item.ten;
+            div.onclick = () => showDrugInfo(item);
+            suggestions.appendChild(div);
+          });
         }
+      });
 
-        function section(title, content) {
-          return `
+      function formatText(text) {
+        if (!text) return "";
+        return text.replace(/\/\//g, "<br>");
+      }
+
+      function section(title, content) {
+        return `
             <div class="section-box">
               <div class="section-title">${title}</div>
               <div class="section-content">${content}</div>
             </div>
           `;
-        }
+      }
 
-        function showDrugInfo(item) {
-    input.value = item.ten;
-    suggestions.innerHTML = "";
+      function showDrugInfo(item) {
+        input.value = item.ten;
+        suggestions.innerHTML = "";
 
-    result.innerHTML = `
+        result.innerHTML = `
       ${section("Hoạt chất / Biệt dược", formatText(item.ten || ""))}
       ${section("CHỈ ĐỊNH", formatText(item.chi_dinh || ""))}
       ${section("CHỐNG CHỈ ĐỊNH", formatText(item.chong_chi_dinh || ""))}
-      ${section("CẢNH BÁO THẬN TRỌNG", formatText(item.canh_bao_than_trong || ""))}
+      ${section(
+        "CẢNH BÁO THẬN TRỌNG",
+        formatText(item.canh_bao_than_trong || "")
+      )}
       ${section("TƯƠNG TÁC THUỐC", formatText(item.tuong_tac_thuoc || ""))}
       ${section("TƯƠNG HỢP, TƯƠNG KỴ", formatText(item.tuong_hop || ""))}
-      ${section("PHỤ NỮ CÓ THAI VÀ CHO CON BÚ", formatText(item.phu_nu_co_thai || ""))}
-      ${section("TÁC DỤNG KHÔNG MONG MUỐN", formatText(item.td_k_mong_muon || ""))}
-      ${section("DƯỢC ĐỘNG HỌC, DƯỢC LỰC HỌC", formatText(item.duoc_doc_hoc || ""))}
+      ${section(
+        "PHỤ NỮ CÓ THAI VÀ CHO CON BÚ",
+        formatText(item.phu_nu_co_thai || "")
+      )}
+      ${section(
+        "TÁC DỤNG KHÔNG MONG MUỐN",
+        formatText(item.td_k_mong_muon || "")
+      )}
+      ${section(
+        "DƯỢC ĐỘNG HỌC, DƯỢC LỰC HỌC",
+        formatText(item.duoc_doc_hoc || "")
+      )}
       ${section("LƯU Ý KHÁC", formatText(item.luu_y_khac || ""))}
       ${section("TÀI LIỆU THAM KHẢO", formatText(item.tai_lieu || ""))}
     `;
-  }
+      }
 
-        
-
-        document.addEventListener("click", (e) => {
-          if (!suggestions.contains(e.target) && e.target !== input) {
-            suggestions.innerHTML = "";
-          }
-        });
-      </script>
-
-      <!-- LOAD HEADER -->
-      <script>
-        fetch("header.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("header-container").innerHTML = html;
-            initHeader();
-          });
-
-        function initHeader() {
-          const menuBtn = document.querySelector(".menu-btn");
-          const closeBtn = document.querySelector(".close-btn");
-          const sideMenu = document.getElementById("sideMenu");
-          const overlay = document.getElementById("overlay");
-
-          if (!menuBtn) return;
-
-          menuBtn.onclick = () => {
-            sideMenu.classList.add("active");
-            overlay.classList.add("active");
-          };
-
-          const closeMenu = () => {
-            sideMenu.classList.remove("active");
-            overlay.classList.remove("active");
-          };
-
-          closeBtn.onclick = closeMenu;
-          overlay.onclick = closeMenu;
+      document.addEventListener("click", (e) => {
+        if (!suggestions.contains(e.target) && e.target !== input) {
+          suggestions.innerHTML = "";
         }
-      </script>
-    </body>
-  </html>
+      });
+    </script>
+
+    <!-- LOAD HEADER -->
+    <script>
+      fetch("header.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("header-container").innerHTML = html;
+          initHeader();
+        });
+
+      function initHeader() {
+        const menuBtn = document.querySelector(".menu-btn");
+        const closeBtn = document.querySelector(".close-btn");
+        const sideMenu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("overlay");
+
+        if (!menuBtn) return;
+
+        menuBtn.onclick = () => {
+          sideMenu.classList.add("active");
+          overlay.classList.add("active");
+        };
+
+        const closeMenu = () => {
+          sideMenu.classList.remove("active");
+          overlay.classList.remove("active");
+        };
+
+        closeBtn.onclick = closeMenu;
+        overlay.onclick = closeMenu;
+      }
+    </script>
+  </body>
+</html>

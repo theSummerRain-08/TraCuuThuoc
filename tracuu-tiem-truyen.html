@@ -8,7 +8,8 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background: #f2f6fa;
+        background: url("bg.jpg") no-repeat center center fixed;
+        background-size: cover;
         margin: 0;
         text-align: center;
         padding-top: 70px;
@@ -166,13 +167,13 @@
 
       function formatText(text) {
         if (!text) return "";
-        return text.replace(/\/\//g, "<br>"); 
+        return text.replace(/\/\//g, "<br>");
       }
 
       // HIỂN THỊ THÔNG TIN THUỐC
       function formatText(text) {
         if (!text) return "";
-        return text.replace(/\/\//g, "<br>"); 
+        return text.replace(/\/\//g, "<br>");
       }
 
       function showDrugInfo(item) {
