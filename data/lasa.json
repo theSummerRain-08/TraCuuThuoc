@@ -2,6 +2,7 @@
   {
     "group_id": "L001",
     "phanloai": 1,
+    "giong_nhau": "Tên thuốc, hoạt chất, nhà sản xuất//Nhìn giống nhau",
     "phanloai_text": "I. Danh mục thuốc nhìn giống nhau, đọc giống nhau (LASA: Look alike sound alike)",
     "thuoc": [
       {
@@ -10,7 +11,8 @@
         "hamluong": "150mg/3ml",
         "nhom": "Thuốc chống loạn nhịp",
         "dangbaoche": "Dung dịch tiêm",
-        "hinhanh": "images/lasa/group1/cordarone_150mg.jpg"
+        "hinhanh": "images/lasa/group1/cordarone_150mg.jpg",
+        "khacnhau":"Hàm lượng: 150mg/3ml // Dạng bào chế: thuốc TIÊM"
       },
       {
         "ten": "Cordarone 200mg",
@@ -18,13 +20,15 @@
         "hamluong": "200mg",
         "nhom": "Thuốc chống loạn nhịp",
         "dangbaoche": "Viên nén",
-        "hinhanh": "images/lasa/group1/cordarone_200mg.jpg"
+        "hinhanh": "images/lasa/group1/cordarone_200mg.jpg",
+        "khacnhau":"Hàm lượng: 200mg // Dạng bào chế: viên nén"
       }
     ]
   },
   {
     "group_id": "L002",
     "phanloai": 4,
+    "giong_nhau": "Nhìn giống nhau// Cùng nhà sản xuất, cùng thể tích",
     "phanloai_text": "IV. Danh mục thuốc nhìn giống nhau, đọc khác nhau (LA: Look alike)",
     "thuoc": [
       {
@@ -33,7 +37,8 @@
         "hamluong": "5mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": " Dung dịch nhỏ mắt",
-        "hinhanh": "images/lasa/group2/alegysal.jpg"
+        "hinhanh": "images/lasa/group2/alegysal.jpg",
+        "khacnhau":"Khác tên thuốc, hoạt chất// Màu sắc: XANH DƯƠNG"
       },
       {
         "ten": "Kary Uni",
@@ -41,7 +46,8 @@
         "hamluong": "0,25mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Hỗn dịch nhỏ mắt",
-        "hinhanh": "images/lasa/group2/kary_uni.jpg"
+        "hinhanh": "images/lasa/group2/kary_uni.jpg",
+        "khacnhau":"Khác tên thuốc, hoạt chất// Màu sắc: XANH LÁ"
       },
       {
         "ten": "Diquas",
@@ -49,23 +55,25 @@
         "hamluong": "150mg/3ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Dung dịch nhỏ mắt",
-        "hinhanh": "images/lasa/group2/diquas.jpg"
-      },
+        "hinhanh": "images/lasa/group2/diquas.jpg",
+        "khacnhau":"Khác tên thuốc, hoạt chất// Màu sắc: XANH DA TRỜI"},
       {
         "ten": "Cravit 1.5%",
         "hoatchat": "Levofloxacin hydrat 75mg/5ml",
         "hamluong": "75mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": " Dung dịch nhỏ mắt",
-        "hinhanh": "images/lasa/group2/cravit.jpg"
-      },
+        "hinhanh": "images/lasa/group2/cravit.jpg",
+         "khacnhau":"Khác tên thuốc, hoạt chất// Màu sắc: ĐỎ"
+      },    
       {
         "ten": "Sanlein 0.3",
         "hoatchat": "Natri hyaluronat tinh khiết 15mg/5ml",
         "hamluong": "15mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Dung dịch nhỏ mắt",
-        "hinhanh": "images/lasa/group2/sanlein_0.3.jpg"
+        "hinhanh": "images/lasa/group2/sanlein_0.3.jpg",
+        "khacnhau":"Khác tên thuốc, hoạt chất// Màu sắc: XANH CÂY ĐẬM"
       },
       {
         "ten": "Flumetholon 0,1",
@@ -73,13 +81,15 @@
         "hamluong": "5mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Dung dịch nhỏ mắt",
-        "hinhanh": "images/lasa/group2/flumetholon_0.1.jpg"
+        "hinhanh": "images/lasa/group2/flumetholon_0.1.jpg",
+        "khacnhau":"Khác tên thuốc, hoạt chất// Màu sắc: CAM"
       }
     ]
   },
   {
     "group_id": "L003",
     "phanloai": 3,
+    "giong_nhau": "Cùng tên thuốc: Digo-, hoạt chất",
     "phanloai_text": "III. Thuốc nhìn khác nhau, đọc gần giống nhau (SA: Sound alike)",
     "thuoc": [
       {
@@ -88,7 +98,8 @@
         "hamluong": "0,25mg",
         "nhom": "Thuốc điều trị suy tim",
         "dangbaoche": " Viên nén",
-        "hinhanh": "images/lasa/group3/digorich.jpg"
+        "hinhanh": "images/lasa/group3/digorich.jpg",
+        "khacnhau":"Khác -rich // Khác hàm lượng, dạng bào chế"
       },
       {
         "ten": "Digoxin/Anfarm ",
@@ -97,6 +108,7 @@
         "nhom": " Thuốc điều trị suy tim",
         "dangbaoche": "Dung dịch tiêm",
         "hinhanh": "images/lasa/group3/digoxin_anfarm.jpg"
+        ,"khacnhau":"Khác -xin/Anfarm  // Khác hàm lượng, dạng bào chế"
       }
     ]
   }

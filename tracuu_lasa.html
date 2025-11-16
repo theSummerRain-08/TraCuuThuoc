@@ -393,7 +393,6 @@
         searchInput.value = selectedName;
         suggestions.innerHTML = "";
 
-        // Tìm group chứa thuốc được chọn
         const group = data.find((g) =>
           g.thuoc.some(
             (t) => t.ten.toLowerCase() === selectedName.toLowerCase()
@@ -407,65 +406,85 @@
 
         const color = colorMap[group.phanloai];
 
-        // Tạo HTML bảng
         let html = `
-    <tr class="row-blue">
-      <td colspan="${group.thuoc.length + 1}" 
-        style="color:${color}; font-weight:bold; text-align:center;">
-        ${group.phanloai_text}
-      </td>
-    </tr>
+<tr class="row-blue">
+  <td colspan="${group.thuoc.length + 1}" 
+    style="color:${color}; font-weight:bold; text-align:center;">
+    ${group.phanloai_text}
+  </td>
+</tr>
 
-    <tr>
-      <th></th>
-      ${group.thuoc.map((t) => `<th>${t.ten}</th>`).join("")}
-    </tr>
+<tr>
+  <th></th>
+  ${group.thuoc.map((t) => `<th>${t.ten}</th>`).join("")}
+</tr>
 
-    <tr>
-      <th>Tên, hoạt chất, hàm lượng</th>
-      ${group.thuoc
-        .map(
-          (t) => `
-          <td>
-            ${t.ten}<br>
-            (${t.hoatchat})<br>
-            <b style="color:red">${t.hamluong}</b>
-          </td>
-        `
-        )
-        .join("")}
-    </tr>
-
-    <tr>
-      <th>Nhóm thuốc</th>
-      ${group.thuoc.map((t) => `<td>${t.nhom}</td>`).join("")}
-    </tr>
-
-    <tr>
-      <th>Dạng bào chế</th>
-      ${group.thuoc
-        .map((t) => `<td style="color:red">${t.dangbaoche}</td>`)
-        .join("")}
-    </tr>
-
-    <tr>
-  <th>Hình ảnh</th>
+<tr>
+  <th>Tên, hoạt chất, hàm lượng</th>
   ${group.thuoc
     .map(
       (t) => `
-        <td>
-          ${
-            t.hinhanh
-              ? `<img src="${t.hinhanh}" style="width:150px; height:auto;">`
-              : `<span style="color:#888">Không có ảnh</span>`
-          }
-        </td>
-      `
+      <td>
+        ${t.ten}<br>
+        (${t.hoatchat})<br>
+        <b style="color:red">${t.hamluong}</b>
+      </td>
+    `
     )
     .join("")}
 </tr>
 
-  `;
+<tr>
+  <th>Nhóm thuốc</th>
+  ${group.thuoc.map((t) => `<td>${t.nhom}</td>`).join("")}
+</tr>
+
+<tr>
+  <th>Dạng bào chế</th>
+  ${group.thuoc
+    .map((t) => `<td style="color:red">${t.dangbaoche}</td>`)
+    .join("")}
+</tr>
+
+<tr>
+  <th>Hình ảnh</th>
+  ${group.thuoc
+    .map(
+      (t) => `
+      <td>
+        ${
+          t.hinhanh
+            ? `<img src="${t.hinhanh}" style="width:150px; height:auto;">`
+            : `<span style="color:#888">Không có ảnh</span>`
+        }
+      </td>
+    `
+    )
+    .join("")}
+</tr>
+
+<!-- HÀNG GIỐNG NHAU -->
+<tr>
+  <th>Giống nhau</th>
+  <td colspan="${group.thuoc.length}" style="text-align:left;">
+    ${group.giong_nhau.replace(/\/\/+/g, "<br>")}
+  </td>
+</tr>
+
+<!-- HÀNG KHÁC NHAU -->
+<tr>
+  <th>Khác nhau</th>
+  ${group.thuoc
+    .map(
+      (t) =>
+        `<td style="color:red; text-align:left;">${t.khacnhau.replace(
+          /\/\/+/g,
+          "<br>"
+        )}</td>`
+    )
+    .join("")}
+</tr>
+`;
 
         infoTable.innerHTML = html;
       }
