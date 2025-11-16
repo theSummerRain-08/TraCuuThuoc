@@ -10,7 +10,7 @@
         "hamluong": "150mg/3ml",
         "nhom": "Thuốc chống loạn nhịp",
         "dangbaoche": "Dung dịch tiêm",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group1/cordarone_150mg.jpg"
       },
       {
         "ten": "Cordarone 200mg",
@@ -18,7 +18,7 @@
         "hamluong": "200mg",
         "nhom": "Thuốc chống loạn nhịp",
         "dangbaoche": "Viên nén",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group1/cordarone_200mg.jpg"
       }
     ]
   },
@@ -33,7 +33,7 @@
         "hamluong": "5mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": " Dung dịch nhỏ mắt",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group2/alegysal.jpg"
       },
       {
         "ten": "Kary Uni",
@@ -41,7 +41,7 @@
         "hamluong": "0,25mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Hỗn dịch nhỏ mắt",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group2/kary_uni.jpg"
       },
       {
         "ten": "Diquas",
@@ -49,7 +49,7 @@
         "hamluong": "150mg/3ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Dung dịch nhỏ mắt",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group2/diquas.jpg"
       },
       {
         "ten": "Cravit 1.5%",
@@ -57,7 +57,7 @@
         "hamluong": "75mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": " Dung dịch nhỏ mắt",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group2/cravit.jpg"
       },
       {
         "ten": "Sanlein 0.3",
@@ -65,7 +65,7 @@
         "hamluong": "15mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Dung dịch nhỏ mắt",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group2/sanlein_0.3.jpg"
       },
       {
         "ten": "Flumetholon 0,1",
@@ -73,7 +73,30 @@
         "hamluong": "5mg/5ml",
         "nhom": "Thuốc mắt",
         "dangbaoche": "Dung dịch nhỏ mắt",
-        "hinhanh": ""
+        "hinhanh": "images/lasa/group2/flumetholon_0.1.jpg"
+      }
+    ]
+  },
+  {
+    "group_id": "L003",
+    "phanloai": 3,
+    "phanloai_text": "III. Thuốc nhìn khác nhau, đọc gần giống nhau (SA: Sound alike)",
+    "thuoc": [
+      {
+        "ten": "Digorich ",
+        "hoatchat": "Digoxin 0,25mg",
+        "hamluong": "0,25mg",
+        "nhom": "Thuốc điều trị suy tim",
+        "dangbaoche": " Viên nén",
+        "hinhanh": "images/lasa/group3/digorich.jpg"
+      },
+      {
+        "ten": "Digoxin/Anfarm ",
+        "hoatchat": "Digoxin 0,5mg/2ml",
+        "hamluong": " 0,5mg/2ml",
+        "nhom": " Thuốc điều trị suy tim",
+        "dangbaoche": "Dung dịch tiêm",
+        "hinhanh": "images/lasa/group3/digoxin_anfarm.jpg"
       }
     ]
   }
