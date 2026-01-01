@@ -542,6 +542,28 @@
         if (!suggestions.contains(e.target) && e.target !== searchInput)
           suggestions.innerHTML = "";
       });
+
+
+      /////////////////////////////////
+
+
+      
+      function convertDriveLink(url) {
+        if (!url) return "";
+
+        // Nếu đã là link uc?id= thì giữ nguyên
+        if (url.includes("drive.google.com/uc?id=")) {
+          return url;
+        }
+
+        // Bắt FILE_ID từ link /file/d/FILE_ID
+        const match = url.match(/\/d\/([^/]+)/);
+        if (match && match[1]) {
+          return `https://drive.google.com/uc?id=${match[1]}`;
+        }
+
+        return url; // fallback
+      }
     </script>
   </body>
 </html>
