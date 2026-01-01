@@ -348,9 +348,27 @@
       const infoTable = document.getElementById("info-table");
 
       // Tải file LASA
-      fetch("data/lasa.json")
-        .then((res) => res.json())
-        .then((json) => (data = json));
+      //let data = [];
+
+      const SHEET_ID = "1Y1vaMPKL8eW37Zp4LEDqeL5d9Fg_gUUhB01uX9aFZkM";
+
+      const GROUPS_URL = `https://opensheet.elk.sh/1Y1vaMPKL8eW37Zp4LEDqeL5d9Fg_gUUhB01uX9aFZkM/GroupsLASA`;
+      const DRUGS_URL = `https://opensheet.elk.sh/1Y1vaMPKL8eW37Zp4LEDqeL5d9Fg_gUUhB01uX9aFZkM/DrugsLASA`;
+
+      Promise.all([
+        fetch(GROUPS_URL).then((r) => r.json()),
+        fetch(DRUGS_URL).then((r) => r.json()),
+      ]).then(([groups, drugs]) => {
+        data = groups.map((g) => ({
+          group_id: g.group_id,
+          phanloai: Number(g.phanloai),
+          phanloai_text: g.phanloai_text,
+          giong_nhau: g.giong_nhau,
+          thuoc: drugs.filter((d) => d.group_id === g.group_id),
+        }));
+
+        console.log("LASA DATA READY", data);
+      });
 
       // Gợi ý theo từng thuốc trong tất cả nhóm
       searchInput.addEventListener("input", () => {
