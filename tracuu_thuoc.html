@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tra cứu thuốc</title>
-
+    <link rel="icon" type="image/png" href="logoA.jpg" />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -108,9 +108,18 @@
       const suggestions = document.getElementById("suggestions");
       const result = document.getElementById("result");
 
-      fetch("data/thuoc-thongtin.json")
+      const DATA_URL =
+        "https://opensheet.elk.sh/1Y1vaMPKL8eW37Zp4LEDqeL5d9Fg_gUUhB01uX9aFZkM/DrugsInformation";
+
+      fetch(DATA_URL)
         .then((res) => res.json())
-        .then((json) => (data = json));
+        .then((json) => {
+          data = json;
+          console.log("DATA READY", data);
+        })
+        .catch((err) => {
+          console.error("Lỗi tải dữ liệu", err);
+        });
 
       input.addEventListener("input", () => {
         const value = input.value.trim().toLowerCase();

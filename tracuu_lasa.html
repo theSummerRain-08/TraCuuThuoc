@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tra cứu LASA</title>
+    <link rel="icon" type="image/png" href="logoA.jpg" />
 
     <style>
       body {
@@ -109,6 +110,7 @@
       table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed;
       }
 
       th,
@@ -116,6 +118,8 @@
         border: 1px solid #ddd;
         padding: 10px;
         text-align: left;
+        word-wrap: break-word;
+        word-break: break-word;
       }
 
       th {
@@ -543,11 +547,8 @@
           suggestions.innerHTML = "";
       });
 
-
       /////////////////////////////////
 
-
-      
       function convertDriveLink(url) {
         if (!url) return "";
 
