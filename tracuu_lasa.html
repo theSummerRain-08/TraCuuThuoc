@@ -106,6 +106,39 @@
         text-align: center;
         font-size: 18px;
       }
+      /* ===== FIX TABLE MOBILE ===== */
+
+      /* Cho phép cuộn ngang */
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      /* Không cho bảng bị bóp trên mobile */
+      table {
+        min-width: 900px;
+      }
+
+      /* Bảo vệ ô bảng */
+      td,
+      th {
+        overflow: hidden;
+        vertical-align: top;
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        table {
+          min-width: 700px;
+        }
+
+        table img {
+          max-width: 90px;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+        }
+      }
 
       table {
         width: 100%;
@@ -227,11 +260,14 @@
     <!-- RESULT BOX -->
     <div class="result" id="result" style="display: none">
       <div class="section-title">THÔNG TIN KẾT QUẢ</div>
-      <table id="info-table">
-        <tr>
-          <td colspan="2" style="text-align: center">Không có thông tin</td>
-        </tr>
-      </table>
+
+      <div class="table-wrapper">
+        <table id="info-table">
+          <tr>
+            <td colspan="2" style="text-align: center">Không có thông tin</td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <script>
